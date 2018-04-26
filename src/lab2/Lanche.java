@@ -39,6 +39,18 @@ public class Lanche {
 	}
 	
 	/**
+	 * Constrói um lanche apartir de sua quanrtidade, valor e detalhe
+	 * @param quantidade : Representa a quantidade em unidades de um lanche
+	 * @param detalhe : Representa o detalhe do lanche, que pode ser seu nome, ou o nome que vc gostar.
+	 */
+	public Lanche(int quantidade,int valor) {
+		this.quantidade = quantidade;
+		this.valor = valor;
+		this.detalhe = "";
+	}
+	
+	
+	/**
 	 * Retorna a quantidade de itens daquele lanche
 	 * @return retorna um inteiro
 	 */

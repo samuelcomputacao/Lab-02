@@ -75,6 +75,8 @@ public class Saude {
 		return "fraca";
 	}
 	
-	public  void definirEmoji(String valor)
+	public  void definirEmoji(String valor) {
+		//@TODO implementar
+	}
 
 }
