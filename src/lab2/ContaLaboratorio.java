@@ -8,7 +8,7 @@ package lab2;
  * 
  */
 
-public class ContaLaboratorio {
+public class ContaLaboratorio extends Conta{
 	
 	private String nomeLaboratorio;
 	
@@ -67,5 +67,13 @@ public class ContaLaboratorio {
 	public String toString() {
 		String str = String.format("%s %d/%d",this.nomeLaboratorio,this.espaco,this.cota);;
 		return str;
+	}
+	
+	/**
+	 * Retorna o nome do laboratório
+	 * @return Uma string representando o nome do laboratório
+	 */
+	public String getNome() {
+		return this.nomeLaboratorio;
 	}
 }
