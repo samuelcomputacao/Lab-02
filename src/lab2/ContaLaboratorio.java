@@ -8,10 +8,9 @@ package lab2;
  * 
  */
 
-public class ContaLaboratorio extends Conta{
+public class ContaLaboratorio{
 	
 	private String nomeLaboratorio;
-	
 	/**
 	 * Espaco maximo que um laborátoio pode ocupar 
 	 */

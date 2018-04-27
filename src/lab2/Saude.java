@@ -28,7 +28,7 @@ public class Saude {
 	public Saude() {
 		this.saudeFisica = "boa";
 		this.saudeMental = "boa";
-		this.emoji = "";
+		this.definirEmoji("");
 	}
 	
 	
@@ -39,6 +39,7 @@ public class Saude {
 	 */
 	public void defineSaudeMental(String valor) {
 		this.saudeMental = valor;
+		this.definirEmoji("");
 	}
 	
 	/**
@@ -48,6 +49,7 @@ public class Saude {
 	 */
 	public void defineSaudeFisica(String valor){
 		this.saudeFisica = valor;
+		this.definirEmoji("");
 	}
 	
 	/**
@@ -58,25 +60,27 @@ public class Saude {
 	public String getStatusGeral() {
 		if(this.saudeFisica.equals("boa") && this.saudeMental.equals("boa")) {
 			if(this.emoji.length()>0) {
-				return "boa "+ this.emoji;
+				return "boa " + this.emoji;
+			}else{
+				return "boa";
 			}
-			return "boa";
 
 		}else if(this.saudeFisica.equals("boa") || this.saudeMental.equals("boa")) {
 			if(this.emoji.length()>0) {
 				return "ok "+ this.emoji;
+			}else{
+				return "ok";
 			}
-			return "ok";
+		}else{
+			if(this.emoji.length()>0) {
+				return "fraca "+ this.emoji;
+			}
+			return "fraca";
 		}
-		
-		if(this.emoji.length()>0) {
-			return "fraca "+ this.emoji;
-		}
-		return "fraca";
 	}
 	
 	public  void definirEmoji(String valor) {
-		//@TODO implementar
+		this.emoji = valor;
 	}
 
 }

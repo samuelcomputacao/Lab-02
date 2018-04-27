@@ -1,84 +1,85 @@
 package lab2;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coisa {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
+		
+		List<Aluno> alunos = new ArrayList<Aluno>();
+	
+		
+		ContaLaboratorio contaLCC2 = new ContaLaboratorio("LCC2");
+		
+		contaLCC2.consomeEspaco(1999);
 
-           
+		System.out.println(contaLCC2.atingiuCota());
 
-            ContaLaboratorio contaLCC2 = new ContaLaboratorio("LCC2");
+		contaLCC2.consomeEspaco(2);
 
-            contaLCC2.consomeEspaco(1999);
+		System.out.println(contaLCC2.atingiuCota());
 
-            System.out.println(contaLCC2.atingiuCota());
+		contaLCC2.liberaEspaco(1);
 
-            contaLCC2.consomeEspaco(2);
+		System.out.println(contaLCC2.atingiuCota());
 
-            System.out.println(contaLCC2.atingiuCota());
+		contaLCC2.liberaEspaco(1);
 
-            contaLCC2.liberaEspaco(1);
+		System.out.println(contaLCC2.atingiuCota());
 
-            System.out.println(contaLCC2.atingiuCota());
+		System.out.println(contaLCC2.toString());
 
-            contaLCC2.liberaEspaco(1);
+		Disciplina prog2 = new Disciplina("PROGRAMACAO 2");
 
-            System.out.println(contaLCC2.atingiuCota());
+		prog2.cadastraHoras(4);
 
-            System.out.println(contaLCC2.toString());
+		prog2.cadastraNota(1, 5.0);
 
-            Disciplina prog2 = new Disciplina("PROGRAMACAO 2");
+		prog2.cadastraNota(2, 6.0);
 
-            prog2.cadastraHoras(4);
+		prog2.cadastraNota(3, 7.0);
 
-            prog2.cadastraNota(1, 5.0);
+		System.out.println(prog2.aprovado());
 
-            prog2.cadastraNota(2, 6.0);
+		prog2.cadastraNota(4, 10.0);
 
-            prog2.cadastraNota(3, 7.0);
+		System.out.println(prog2.aprovado());
 
-            System.out.println(prog2.aprovado());
+		System.out.println(prog2.toString());
 
-            prog2.cadastraNota(4, 10.0);
+		ContaCantina mulherDoBolo = new ContaCantina("Mulher do Bolo");
 
-            System.out.println(prog2.aprovado());
+		mulherDoBolo.cadastraLanche(2, 500);
 
-            System.out.println(prog2.toString());
+		mulherDoBolo.cadastraLanche(1, 500);
 
-           
+		mulherDoBolo.pagaConta(200);
 
-            ContaCantina mulherDoBolo = new ContaCantina("Mulher do Bolo");            
+		System.out.println(mulherDoBolo.toString());
 
-            mulherDoBolo.cadastraLanche(2, 500);
+		Saude saude = new Saude();
 
-            mulherDoBolo.cadastraLanche(1, 500);
+		System.out.println(saude.getStatusGeral());
 
-            mulherDoBolo.pagaConta(200);
+		saude.defineSaudeMental("boa");
 
-            System.out.println(mulherDoBolo.toString());
+		saude.defineSaudeFisica("boa");
 
-            Saude saude = new Saude();
+		System.out.println(saude.getStatusGeral());
 
-            System.out.println(saude.getStatusGeral());
+		saude.defineSaudeMental("fraca");
 
-            saude.defineSaudeMental("boa");
+		saude.defineSaudeFisica("fraca");
 
-            saude.defineSaudeFisica("boa");
+		System.out.println(saude.getStatusGeral());
 
-            System.out.println(saude.getStatusGeral());
+		saude.defineSaudeMental("boa");
 
-            saude.defineSaudeMental("fraca");
+		saude.defineSaudeFisica("fraca");
 
-            saude.defineSaudeFisica("fraca");
+		System.out.println(saude.getStatusGeral());
 
-            System.out.println(saude.getStatusGeral());
-
-            saude.defineSaudeMental("boa");
-
-            saude.defineSaudeFisica("fraca");
-
-            System.out.println(saude.getStatusGeral());
-
-    }
-
-   
+	}
 
 }

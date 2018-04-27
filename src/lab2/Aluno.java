@@ -67,9 +67,8 @@ public class Aluno {
 	 * @param mbytes : Quantidade a ser crementada
 	 */
 	public void consomeEspaco(String nomeLaboratorio, int mbytes) {
-		ContaLaboratorio conta = buscaConta(nomeLaboratorio,this.laboratorios);
-		conta.consomeEspaco(mbytes);
-		
+		ContaLaboratorio conta = buscaContaLab(nomeLaboratorio);
+		conta.consomeEspaco(mbytes);		
 	}
 	
 	/**
@@ -78,12 +77,12 @@ public class Aluno {
 	 * @param mbytes : Quantidade a ser crementada
 	 */
 	public void liberaEspaco(String nomeLaboratorio, int mbytes) {
-		ContaLaboratorio conta = buscaConta(nomeLaboratorio,this.getLaboratorios());
+		ContaLaboratorio conta = buscaContaLab(nomeLaboratorio);
 		conta.liberaEspaco(mbytes);
 	}
 	
 	public boolean atingiuCota(String nomeLaboratorio) {
-		ContaLaboratorio conta = buscaConta(nomeLaboratorio,this.laboratorios);
+		ContaLaboratorio conta = buscaContaLab(nomeLaboratorio);
 		return conta.atingiuCota();
 	}
 	
@@ -94,10 +93,10 @@ public class Aluno {
 	 * @param tipo : o tipo de conta a ser buscado
 	 * @return uma conta de laboratório
 	 */
-	private Conta buscaConta(String nome, Set<Conta> conjunto) {
-		Iterator<Conta> iterator = conjunto.iterator();
+	private ContaLaboratorio buscaContaLab(String nome) {
+		Iterator<ContaLaboratorio> iterator = this.laboratorios.iterator();
 		while(iterator.hasNext()) {
-			Conta conta = iterator.next();
+			ContaLaboratorio conta = iterator.next();
 			if(conta.getNome().equals(nome)) {
 				return conta;
 			}
@@ -166,6 +165,13 @@ public class Aluno {
 	 */
 	public void setSaude(Saude saude) {
 		this.saude = saude;
+	}
+	
+	
+	@Override
+	public String toString() {
+		
+		return this.saude.getStatusGeral();
 	}
 
 }
