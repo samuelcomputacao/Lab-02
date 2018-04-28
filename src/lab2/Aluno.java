@@ -29,12 +29,12 @@ public class Aluno {
 	private Set<ContaLaboratorio> laboratorios;
 	
 	/**
-	 * Representa a saúde de um aluno
+	 * Representa a saÃºde de um aluno
 	 */
 	private Saude saude;
 	
 	/**
-	 * Constrói um aluno com os valores de disciplinas, cantinas e laboratótios zerados
+	 * Constrói um aluno com os valores de disciplinas, cantinas e laboratÃ³tios zerados
 	 */
 	public Aluno() {
 		this.disciplinas = new HashSet<Disciplina>();
@@ -43,27 +43,27 @@ public class Aluno {
 	}
 	
 	/**
-	 * Cadastra uma nova conta de labaratório com cota padrão a um aluno
+	 * Cadastra uma nova conta de labaratÃ³rio com cota padrÃ£o a um aluno
 	 * 
-	 * @param nomeLaboratorio : nome do novo laboratório que será adicionado
+	 * @param nomeLaboratorio : nome do novo laboratÃ³rio que serÃ¡ adicionado
 	 */
 	public void cadastraLaboratorio(String nomeLaboratorio) {
 		this.laboratorios.add(new ContaLaboratorio(nomeLaboratorio));
 	}
 	
 	/**
-	 * Cadastra uma nova conta de labaratório com cota específica a um aluno
+	 * Cadastra uma nova conta de labaratÃ³rio com cota especÃ­fica a um aluno
 	 * 
-	 * @param nomeLaboratorio : nome do novo laboratório que será adicionado
-	 * @param cota : tamanho do espaço máximo que será utilizado pelo laboratório
+	 * @param nomeLaboratorio : nome do novo laboratÃ³rio que serÃ¡ adicionado
+	 * @param cota : tamanho do espaÃ§o mÃ¡ximo que serÃ¡ utilizado pelo laboratÃ³rio
 	 */
 	public void cadastraLaboratorio(String nomeLaboratorio, int cota) {
 		this.laboratorios.add(new ContaLaboratorio(nomeLaboratorio, cota));
 	}
 	
 	/**
-	 * Altera o valor total utilizado pelo laboratório
-	 * @param nomeLaboratorio : Nome do laboratório que será modificado
+	 * Altera o valor total utilizado pelo laboratÃ³rio
+	 * @param nomeLaboratorio : Nome do laboratÃ³rio que serÃ¡ modificado
 	 * @param mbytes : Quantidade a ser crementada
 	 */
 	public void consomeEspaco(String nomeLaboratorio, int mbytes) {
@@ -73,7 +73,7 @@ public class Aluno {
 	
 	/**
 	 * Altera o valor total utilizado pelo laboratório
-	 * @param nomeLaboratorio : Nome do laboratório que será modificado
+	 * @param nomeLaboratorio : Nome do laboratÃ³rio que serÃ¡ modificado
 	 * @param mbytes : Quantidade a ser crementada
 	 */
 	public void liberaEspaco(String nomeLaboratorio, int mbytes) {
@@ -81,17 +81,170 @@ public class Aluno {
 		conta.liberaEspaco(mbytes);
 	}
 	
+	/**
+	 * Verifica se um aluno já atingiu o estapaço total liberado pelolaboratório
+	 * @param nomeLaboratorio : Nome do laboratório que será verificado
+	 */
 	public boolean atingiuCota(String nomeLaboratorio) {
 		ContaLaboratorio conta = buscaContaLab(nomeLaboratorio);
 		return conta.atingiuCota();
 	}
 	
+	/**
+	 * Constrói uma represenção de um laboratório 
+	 * @return retorna uma string que representa o laboratório
+	 */
+	public String laboratorioToString(String nomeLaboratorio) {
+		ContaLaboratorio conta= buscaContaLab(nomeLaboratorio);
+		return conta.toString();
+		
+	}
 	
 	/**
-	 * Busca no conjunto de contas  que tem um nome específico
+	 * Cadastra uma nova disciplina ao conjunto de disciplina de um determinado aluno  
+	 * @param nomeDisciplina :  Uma String que representa o nome da nova disciplina
+	 */
+	public void cadastraDisciplina(String nomeDisciplina) {
+		Disciplina disciplina = new Disciplina(nomeDisciplina);
+		this.disciplinas.add(disciplina);
+	}
+	
+	/**
+	 * Cadastra uma carga horária a uma determinada disciplina do conjunto de disciplinas  
+	 * @param nomeDisciplina :  Uma String que representa o nome da disciplina
+	 * @param horas : UM inteiro representando a carga horária da disciplina
+	 */
+	public void cadastraHoras(String nomeDisciplina, int horas) {
+		Disciplina disciplina = buscaDisciplina(nomeDisciplina);
+		disciplina.cadastraHoras(horas);		
+	}
+	
+	/**
+	 * Cadastra uma nota a uma disciplina de um determinado aluno  
+	 * @param nomeDisciplina :  Uma String que representa o nome da disciplina
+	 * @param nota  : Um inteiro representando qual nota será cadastrada
+	 * @param valorNota : Um valor de ponto flutuante representando o valor da nota
+	 */
+	public void cadastraNota(String nomeDisciplina, int nota, double valorNota) {
+		Disciplina disciplina = buscaDisciplina(nomeDisciplina);
+		disciplina.cadastraNota(nota, valorNota);
+	}
+	
+	/**
+	 * Verifica se o aluno está aprovado  
+	 * @param nomeDisciplina :  Uma String que representa o nome da disciplina
+	 * @return Um valor boleano que representa se o aluno está aprovado ou não
+	 */
+	public boolean aprovado(String nomeDisciplina) {
+		Disciplina disciplina = buscaDisciplina(nomeDisciplina);
+		return disciplina.aprovado();
+	}
+	
+	/**
+	 * Constrói uma representação para uma determinad disciplina de um aluno  
+	 * @param nomeDisciplina :  Uma String que representa o nome da disciplina
+	 * @return Uma String representando uma disciplina de um aluno 
+	 */
+	public String disciplinaToString(String nomeDisciplina) {
+		Disciplina disciplina= buscaDisciplina(nomeDisciplina);
+		return disciplina.toString();
+	}
+	
+	/**
+	 * Cria uma nova conta na cantina para um determinado aluno  
+	 * @param nomeCantina :  Uma String que representa o nome da cantina
+	 */
+	public void cadastraCantina(String nomeCantina) {
+		ContaCantina cantina = new ContaCantina(nomeCantina);
+		this.cantinas.add(cantina);
+	}
+	
+
+	/**
+	 * Cria um novo lanche de um aluno em uma determinada cantina  
+	 * @param nomeCantina :  Uma String que representa o nome da cantina
+	 * @param qtdItens : Um inteirorepresentando a quantidade de itens que será adicionado 
+	 * @param valorCentavos : Um inteiro representando o preço do lanche
+	 */
+	public void cadastraLanche(String nomeCantina, int qtdItens, int valorCentavos) {
+		ContaCantina cantina = buscaCantina(nomeCantina);
+		cantina.cadastraLanche(qtdItens, valorCentavos);
+	}
+	
+	/**
+	 * Realiza um pagamento em centavos em uma determinada cantina  
+	 * @param nomeCantina :  Uma String que representa o nome da cantina onde será feito o pagamento
+	 */
+	public void pagarConta(String nomeCantina, int valorCentavos) {
+		ContaCantina cantina = buscaCantina(nomeCantina);
+		cantina.pagaConta(valorCentavos);
+	}
+	
+	/**
+	 * Constrói uma representação para uma determinada cantina de um aluno  
+	 * @param nomeCantina :  Uma String que representa o nome da cantina
+	 */
+	public String cantinaToString(String nomeCantina) {
+		ContaCantina cantina = buscaCantina(nomeCantina);
+		return cantina.toString();
+	}
+	
+	/**
+	 * Define a situação da saúde Mental de um determinado aluno  
+	 * @param valor :  Situação da saúde mental
+	 */
+	public void defineSaudeMental(String valor) {
+		this.saude.defineSaudeMental(valor);
+	}
+	
+	/**
+	 * Define a situação da saúde Fisíca de um determinado aluno  
+	 * @param valor :  Situação da saúde fisica
+	 */
+	public void defineSaudeFisica(String valor) {
+		this.saude.defineSaudeFisica(valor);
+	}
+	
+	/**
+	 * Constrói uma representação da situação da saúde de um aluno  
+	 * @return Uma String representando a saúde do aluno
+	 */
+	public String getStatusGeral() {
+		return this.saude.getStatusGeral();
+	}
+
+	/**
+	 * Realiza uma busca no conjunto de cantinas de um determinado aluno  
+	 * @param nomeCantina :  Uma String que representa o nome da cantina que será buscada
+	 * @return Uma conta de cantina
+	 */
+	private ContaCantina buscaCantina(String nomeCantina) {
+		Iterator<ContaCantina> iterator = this.cantinas.iterator();
+		while(iterator.hasNext()) {
+			ContaCantina cantina = iterator.next(); 
+			if(cantina.getNomeDaCantina().equals(nomeCantina)) return cantina;
+		}
+		return null;
+	}
+
+	/**
+	 * Realiza uma busca de disiplina no conjunto de disciplina de um aluno   
+	 * @param nomeDisciplina :  Uma String que representa o nome da  disciplina
+	 */
+	private Disciplina buscaDisciplina(String nomeDisciplina) {
+		Iterator<Disciplina> iterator = this.disciplinas.iterator();
+		while(iterator.hasNext()) {
+			Disciplina disciplina = iterator.next();
+			if(disciplina.getNomeDisciplina().equals(nomeDisciplina)) return disciplina;
+		}
+		return null;
+	}
+
+	/**
+	 * Busca no conjunto de contas de laboratório  que tem um nome específico
 	 * @param nome: o nome da conta  a ser buscada
 	 * @param tipo : o tipo de conta a ser buscado
-	 * @return uma conta de laboratório
+	 * @return uma conta de laboraório
 	 */
 	private ContaLaboratorio buscaContaLab(String nome) {
 		Iterator<ContaLaboratorio> iterator = this.laboratorios.iterator();
@@ -105,7 +258,6 @@ public class Aluno {
 	}
 
 	/**
-	 * 
 	 * @return Retorna as disciplinas de um aluno
 	 */
 	public Set<Disciplina> getDisciplinas() {
@@ -136,16 +288,16 @@ public class Aluno {
 	}
 	
 	/**
-	 * Retorna todas as contas em laboratórios de um aluno 
-	 * @return Um conjunto de laboratórios
+	 * Retorna todas as contas em laboratÃ³rios de um aluno 
+	 * @return Um conjunto de laboratÃ³rios
 	 */
 	public Set<ContaLaboratorio> getLaboratorios() {
 		return laboratorios;
 	}
 
 	/**
-	 * Modifica todas as contas de laborátorio de um aluno
-	 * @param laboratorios : Faz referência a um conjunto de conta de laboratório
+	 * Modifica todas as contas de laborÃ¡torio de um aluno
+	 * @param laboratorios : Faz referÃªncia a um conjunto de conta de laboratÃ³rio
 	 */
 	public void setLaboratorios(Set<ContaLaboratorio> laboratorios) {
 		this.laboratorios = laboratorios;
@@ -160,18 +312,23 @@ public class Aluno {
 	}
 
 	/**
-	 * Modifica o estado de saúde de um aluno
+	 * Modifica o estado de saÃºde de um aluno
 	 * @param saude : refere-se a saude do aluno
 	 */
 	public void setSaude(Saude saude) {
 		this.saude = saude;
 	}
 	
-	
+	/**
+	 * Retorna o estado atual de saúde de um aluno
+	 * @return Uma String representando a sude do aluno
+	 */
 	@Override
 	public String toString() {
 		
 		return this.saude.getStatusGeral();
 	}
+	
+		
 
 }

@@ -137,7 +137,6 @@ public class Disciplina {
 	 * 
 	 * @return retona uma string representando uma string.
 	 */
-	
 	@Override
 	public String toString() {
 		String str = String.format("%s %d %s %s",this.nomeDisciplina,this.horas,String.valueOf(this.media()),this.notasToString());
@@ -157,6 +156,15 @@ public class Disciplina {
 		}
 		return str+"]";
 	}
+	
+	/**
+	 * Retorna o nome da disicplina  
+	 * @return Uma String representando o nome da disciplina
+	 */
+	public String getNomeDisciplina() {
+		return this.nomeDisciplina;
+	}
+	
 	
 
 

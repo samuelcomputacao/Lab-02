@@ -107,5 +107,14 @@ public class ContaCantina {
 		}
 		return retorno;
 	}
+	
+	/**
+	 * Retorna uma representação do nome da cantina
+	 * 
+	 * @return Uma String representando a cantina
+	 */
+	public String getNomeDaCantina() {
+		return this.nomeDaCantina;
+	}
 
 }
