@@ -13,6 +13,12 @@ import java.util.Set;
 
 public class Aluno {
 	
+	
+	/**
+	 * Representa a matrícula de um aluno
+	 */
+	private long matricula;
+	
 	/**
 	 * Representa todas as disciplinas que um aluno possui
 	 */
@@ -29,41 +35,43 @@ public class Aluno {
 	private Set<ContaLaboratorio> laboratorios;
 	
 	/**
-	 * Representa a saÃºde de um aluno
+	 * Representa a saúde de um aluno
 	 */
 	private Saude saude;
 	
 	/**
-	 * Constrói um aluno com os valores de disciplinas, cantinas e laboratÃ³tios zerados
+	 * Constrói um aluno com os valores de disciplinas, cantinas e laboratórios zerados
 	 */
-	public Aluno() {
+	public Aluno(long matricula) {
 		this.disciplinas = new HashSet<Disciplina>();
 		this.cantinas = new HashSet<ContaCantina>();
 		this.laboratorios = new HashSet<ContaLaboratorio>();
+		this.matricula = matricula;
+		this.saude = new Saude();
 	}
-	
+
 	/**
-	 * Cadastra uma nova conta de labaratÃ³rio com cota padrÃ£o a um aluno
+	 * Cadastra uma nova conta de labaratório com cota padrão a um aluno
 	 * 
-	 * @param nomeLaboratorio : nome do novo laboratÃ³rio que serÃ¡ adicionado
+	 * @param nomeLaboratorio : nome do novo laboratório que será adicionado
 	 */
 	public void cadastraLaboratorio(String nomeLaboratorio) {
 		this.laboratorios.add(new ContaLaboratorio(nomeLaboratorio));
 	}
 	
 	/**
-	 * Cadastra uma nova conta de labaratÃ³rio com cota especÃ­fica a um aluno
+	 * Cadastra uma nova conta de labaratório com cota específica a um aluno
 	 * 
-	 * @param nomeLaboratorio : nome do novo laboratÃ³rio que serÃ¡ adicionado
-	 * @param cota : tamanho do espaÃ§o mÃ¡ximo que serÃ¡ utilizado pelo laboratÃ³rio
+	 * @param nomeLaboratorio : nome do novo laboratório que será adicionado
+	 * @param cota : tamanho do espaço máximo que será utilizado pelo laboratório
 	 */
 	public void cadastraLaboratorio(String nomeLaboratorio, int cota) {
 		this.laboratorios.add(new ContaLaboratorio(nomeLaboratorio, cota));
 	}
 	
 	/**
-	 * Altera o valor total utilizado pelo laboratÃ³rio
-	 * @param nomeLaboratorio : Nome do laboratÃ³rio que serÃ¡ modificado
+	 * Altera o valor total utilizado pelo laboratório
+	 * @param nomeLaboratorio : Nome do laboratório que será modificado
 	 * @param mbytes : Quantidade a ser crementada
 	 */
 	public void consomeEspaco(String nomeLaboratorio, int mbytes) {
@@ -73,7 +81,7 @@ public class Aluno {
 	
 	/**
 	 * Altera o valor total utilizado pelo laboratório
-	 * @param nomeLaboratorio : Nome do laboratÃ³rio que serÃ¡ modificado
+	 * @param nomeLaboratorio : Nome do laboratório que será modificado
 	 * @param mbytes : Quantidade a ser crementada
 	 */
 	public void liberaEspaco(String nomeLaboratorio, int mbytes) {
@@ -113,7 +121,7 @@ public class Aluno {
 	 * Cadastra uma carga horária a uma determinada disciplina do conjunto de disciplinas  
 	 * @param nomeDisciplina :  Uma String que representa o nome da disciplina
 	 * @param horas : UM inteiro representando a carga horária da disciplina
-	 */
+	 */	
 	public void cadastraHoras(String nomeDisciplina, int horas) {
 		Disciplina disciplina = buscaDisciplina(nomeDisciplina);
 		disciplina.cadastraHoras(horas);		
@@ -146,7 +154,7 @@ public class Aluno {
 	 * @return Uma String representando uma disciplina de um aluno 
 	 */
 	public String disciplinaToString(String nomeDisciplina) {
-		Disciplina disciplina= buscaDisciplina(nomeDisciplina);
+		Disciplina disciplina = buscaDisciplina(nomeDisciplina);
 		return disciplina.toString();
 	}
 	
@@ -288,16 +296,16 @@ public class Aluno {
 	}
 	
 	/**
-	 * Retorna todas as contas em laboratÃ³rios de um aluno 
-	 * @return Um conjunto de laboratÃ³rios
+	 * Retorna todas as contas em laboratórios de um aluno 
+	 * @return Um conjunto de laboratórios
 	 */
 	public Set<ContaLaboratorio> getLaboratorios() {
 		return laboratorios;
 	}
 
 	/**
-	 * Modifica todas as contas de laborÃ¡torio de um aluno
-	 * @param laboratorios : Faz referÃªncia a um conjunto de conta de laboratÃ³rio
+	 * Modifica todas as contas de laborótorio de um aluno
+	 * @param laboratorios : Faz referência a um conjunto de conta de laboratório
 	 */
 	public void setLaboratorios(Set<ContaLaboratorio> laboratorios) {
 		this.laboratorios = laboratorios;
@@ -312,11 +320,28 @@ public class Aluno {
 	}
 
 	/**
-	 * Modifica o estado de saÃºde de um aluno
+	 * Modifica o estado de saúde de um aluno
 	 * @param saude : refere-se a saude do aluno
 	 */
 	public void setSaude(Saude saude) {
 		this.saude = saude;
+	}
+	
+	/**
+	 * Modifica a matrícula de um aluno
+	 * @param matrícula : refere-se a matrícula do aluno
+	 */
+	public void setMatricula(long matricula) {
+		this.matricula = matricula;
+	}
+	
+	
+	/**
+	 * Retorna a matrícula de uma aluno
+	 * 
+	 * @return Um valor representando a matrícula
+	 */public long getMatricula() {
+		return matricula;
 	}
 	
 	/**
@@ -329,6 +354,4 @@ public class Aluno {
 		return this.saude.getStatusGeral();
 	}
 	
-		
-
 }
