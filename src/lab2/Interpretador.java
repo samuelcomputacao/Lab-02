@@ -8,6 +8,14 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * Testando as funcionalidades do sistema. Todos os comandos estão sendo buscado no arquivo comando.txt que se encontra
+ * na pasta comandos.
+ 
+ * 
+ * @author Samuel pereira de Vasconcelos
+ *
+ */
 public class Interpretador {
 
 	private static Set<Aluno> alunos = new HashSet<Aluno>();
